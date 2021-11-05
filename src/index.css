@@ -1,0 +1,34 @@
+@import 'https://fonts.googleapis.com/css?family=Montserrat';
+* {
+	font-family: Montserrat;
+}
+
+body {
+	margin: 0;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	/* background-color: #efeeee; */
+
+	width: 100vw;
+	height: 100vh;
+}
+
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+		monospace;
+}
+#root {
+	height: 100%;
+}
+
+.graph-wrapper {
+	position: relative;
+}
+
+.graph-wrapper div {
+	height: 100%;
+}
+
+canvas {
+	height: 100%;
+}

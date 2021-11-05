@@ -1,0 +1,26 @@
+{
+	"title": "Line",
+	"items": [
+		{
+			"display": "Simple line 1",
+			"formulaText": "y=x",
+			"formula": "x"
+		},
+		{
+			"display": "Simple line 2",
+			"formula": "2*x"
+		},
+		{
+			"display": "Simple line 3",
+			"formula": "3*x"
+		},
+		{
+			"display": "Simple line 3",
+			"formula": "(x * m) + b",
+			"parameters": {
+				"m": 10,
+				"b": 150
+			}
+		}
+	]
+}

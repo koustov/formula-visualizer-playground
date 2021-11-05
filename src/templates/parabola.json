@@ -1,0 +1,15 @@
+{
+	"title": "Parabola",
+	"items": [
+		{
+			"display": "Simple Parabola",
+			"formulaText": "y²=4ax",
+			"formula": "(a*(x)^2)+(b*(x))+c",
+			"parameters": {
+				"a": 400,
+				"b": 400,
+				"c": 400
+			}
+		}
+	]
+}
