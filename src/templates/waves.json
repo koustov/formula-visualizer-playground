@@ -1,0 +1,23 @@
+{
+	"title": "Waves",
+	"items": [
+		{
+			"display": "Sin Curve",
+			"formula": "a*sin(b*(x) + c)",
+			"parameters": {
+				"a": 100,
+				"b": 100,
+				"c": 100
+			}
+		},
+		{
+			"display": "Cos Curve",
+			"formula": "a*cos(b*(x) + c)",
+			"parameters": {
+				"a": 100,
+				"b": 100,
+				"c": 100
+			}
+		}
+	]
+}

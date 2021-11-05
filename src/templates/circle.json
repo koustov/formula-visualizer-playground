@@ -1,0 +1,21 @@
+{
+	"title": "Circle",
+	"items": [
+		{
+			"display": "Half Circle",
+			"formulaText": "x²+y²=a²",
+			"formula": "((a^2)-((x)^2))^0.5",
+			"parameters": {
+				"a": 50
+			}
+		},
+		{
+			"display": "Oval",
+			"formula": "((b^2) * (1 - ((x^2)/(a^2)))^ 0.5)",
+			"parameters": {
+				"a": 500,
+				"b": 50
+			}
+		}
+	]
+}

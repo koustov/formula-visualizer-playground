@@ -1,0 +1,20 @@
+{
+	"title": "Advanced",
+	"items": [
+		{
+			"display": "Astroid",
+			"formulaText": "(a^(2/3)) - ((x)^(2/3))^(3/2)",
+			"formula": "(a^(2/3)) - ((x)^(2/3))^(3/2)",
+			"parameters": {
+				"a": 100
+			}
+		},
+		{
+			"display": "Devil's Curve",
+			"formula": "((x)^2)",
+			"parameters": {
+				"a": 100
+			}
+		}
+	]
+}
