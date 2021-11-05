@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Charts } from './templates';
-import Loader from './components/loader';
+// import Loader from './components/loader';
 import Card from './components/card';
-import { calculate } from './utils/calculate';
+// import Loader from './components/loader';
 import { FormulaVisualizer } from 'formula-visualizer';
 import { numberRange } from 'array-initializer';
 
@@ -16,21 +16,22 @@ function App() {
 	const [allvalues, setAllvalues] = useState({});
 	const [mouseMoveLocation, setMouseMoveLocation] = useState({});
 	const [canvasData, setCanvasData] = useState({ h: 800, w: 800 });
-	const [canvasScale, setCanvasScale] = useState();
 	const c = Charts[0].default;
 	const [selectedChart, setSelectedChart] = useState(c.items[0]);
 	const [allFormulas, setAllFormulas] = useState({});
-	const [loading, setLoading] = useState('1');
+	// const [loading, setLoading] = useState('1');
 	const [initializing, setInitializing] = useState(true);
 	const [isCustom, setIsCustom] = useState(true);
-	let linePath = [];
-
-	let imgData = false; // initially no image data we have
 
 	useEffect(() => {
 		setAllFormulas(Charts);
 		setInitializing(false);
-	}, [selectedChart]);
+		const elem = document.getElementById('graph');
+		setCanvasData({
+			h: elem.clientHeight,
+			w: elem.clientWidth,
+		});
+	}, []);
 
 	const mouseMove = (x, y) => {
 		setMouseMoveLocation({
@@ -44,7 +45,7 @@ function App() {
 	};
 
 	const onFormulaChanged = (formulaId) => {
-		if (formulaId == '0-0') {
+		if (formulaId === '0-0') {
 			setIsCustom(true);
 		} else {
 			setIsCustom(false);
@@ -328,110 +329,120 @@ function App() {
 						</div>
 					</div>
 					<div className='graph-container'>
-						<div className='graph-title'>
-							<div>
-								<div className='wrapped-text'>
-									<span>
-										<i className='far fa-square-root-alt' />
-									</span>
-									<span>y={selectedChart.formula}</span>
+						<div className='graph-title-container'>
+							<div className='graph-title'>
+								<div>
+									<div className='wrapped-text'>
+										<span>
+											<i className='far fa-font' />
+										</span>
+										<span>{selectedChart.display}</span>
+									</div>
+								</div>
+							</div>
+							<div className='graph-title'>
+								<div>
+									<div className='wrapped-text'>
+										<span>
+											<i className='far fa-square-root-alt' />
+										</span>
+										<span>y={selectedChart.formula}</span>
+									</div>
 								</div>
 							</div>
 						</div>
-						<div className='graph-title'>
-							<div>
-								<div className='wrapped-text'>
-									<span>
-										<i className='far fa-expand' />
-									</span>
-									<span>
-										{getRelative(canvasData.w)} X {getRelative(canvasData.h)}
-									</span>
+						<div className='graph-title-container'>
+							<div className='graph-title'>
+								<div>
+									<div className='wrapped-text'>
+										<span>
+											<i className='far fa-expand' />
+										</span>
+										<span>
+											{getRelative(canvasData.w)} X {getRelative(canvasData.h)}
+										</span>
+									</div>
 								</div>
-							</div>
-							<div>
-								<div className='wrapped-text'>
-									<span>
-										<i className='far fa-border-all' />
-									</span>
-									<span>
-										{getRelative(gridSize)} X {getRelative(gridSize)}
-									</span>
+								<div>
+									<div className='wrapped-text'>
+										<span>
+											<i className='far fa-border-all' />
+										</span>
+										<span>
+											{getRelative(gridSize)} X {getRelative(gridSize)}
+										</span>
+									</div>
 								</div>
-							</div>
-							<div>
-								<div className='wrapped-text'>
-									<span>
-										<i className='far fa-search' />
-									</span>
-									<span>{zoom}%</span>
+								<div>
+									<div className='wrapped-text'>
+										<span>
+											<i className='far fa-search' />
+										</span>
+										<span>{zoom}%</span>
+									</div>
 								</div>
-							</div>
-							<div>
-								<div className='wrapped-text'>
-									<i className='far fa-map-marker-alt' />
-									<span>
-										{getRelative(mouseMoveLocation.x)} ,{' '}
-										{getRelative(mouseMoveLocation.y)}
-									</span>
+								<div>
+									<div className='wrapped-text'>
+										<i className='far fa-map-marker-alt' />
+										<span>
+											{getRelative(mouseMoveLocation.x)} ,{' '}
+											{getRelative(mouseMoveLocation.y)}
+										</span>
+									</div>
 								</div>
-							</div>
-							<div className='toolbar-buttons'>
-								<div className='button-container'>
-									<button
-										className='circle-button'
-										onClick={() => {
-											download();
-										}}>
-										<i className='far fa-download'></i>
-									</button>
-								</div>
-								<div className='button-container'>
-									<button
-										className='circle-button'
-										onClick={() => copyToClipBoard()}>
-										<i className='far fa-clipboard'></i>
-									</button>
-								</div>
-								<div className='button-container'>
-									<button
-										className='circle-button'
-										onClick={() => onScaleChange(true)}>
-										<i className='far fa-search-plus'></i>
-									</button>
-								</div>
-								<div className='button-container'>
-									<button
-										className='circle-button'
-										onClick={() => onScaleChange(false)}>
-										<i className='far fa-search-minus'></i>
-									</button>
+								<div className='toolbar-buttons'>
+									<div className='button-container'>
+										<button
+											className='circle-button'
+											onClick={() => {
+												download();
+											}}>
+											<i className='far fa-download'></i>
+										</button>
+									</div>
+									<div className='button-container'>
+										<button
+											className='circle-button'
+											onClick={() => copyToClipBoard()}>
+											<i className='far fa-clipboard'></i>
+										</button>
+									</div>
+									<div className='button-container'>
+										<button
+											className='circle-button'
+											onClick={() => onScaleChange(true)}>
+											<i className='far fa-search-plus'></i>
+										</button>
+									</div>
+									<div className='button-container'>
+										<button
+											className='circle-button'
+											onClick={() => onScaleChange(false)}>
+											<i className='far fa-search-minus'></i>
+										</button>
+									</div>
 								</div>
 							</div>
 						</div>
-						<div className='graph-wrapper'>
-							<div id='graph' className='graph'>
-								{/* {loading ? (
+						<div id='graph' className='graph-wrapper'>
+							{/* <div id='graph' className='graph'>
+								{loading === '1' ? (
 									<div id={`graph-loader`} show={loading}>
 										<Loader />
 									</div>
-								) : ( */}
-								{/* <>? */}
-								{/* {' '} */}
-								{selectedChart.formula && !initializing ? (
-									<FormulaVisualizer
-										formula={selectedChart.formula}
-										parameters={allvalues}
-										xrange={xvals}
-										onMouseMove={mouseMove}
-										onProcessingStart={() => setLoading('1')}
-										onProcessingEnd={() => setLoading('2')}
-									/>
-								) : null}
-								{/* //{' '}
-								</>
-								// )} */}
-							</div>
+								) : (
+									<> */}
+							{selectedChart.formula && !initializing ? (
+								<FormulaVisualizer
+									formula={selectedChart.formula}
+									parameters={allvalues}
+									xrange={xvals}
+									onMouseMove={(x, y) => mouseMove(x, y)}
+								/>
+							) : null}
+							{/* </>
+								)}
+							</div> */}
 						</div>
 					</div>
 				</div>
